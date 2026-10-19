@@ -1,0 +1,9 @@
+# Required
+numpy>=1.21
+Pillow>=9.1
+
+# Optional (uncomment what you need, or `pip install "vectra[all]"`)
+# torch>=2.0            # ResNet / MobileNet backends and contrastive training
+# torchvision>=0.15
+# faiss-cpu             # HNSW / IVF indexes for libraries above ~20k images
+# pytest>=7             # run the test suite

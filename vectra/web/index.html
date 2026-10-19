@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vectra</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <header class="top">
+    <h1 class="wordmark">vectra</h1>
+    <p class="facts" id="facts"></p>
+  </header>
+
+  <main class="layout">
+    <section class="query" aria-labelledby="q-title">
+      <h2 id="q-title" class="sr">Your image</h2>
+
+      <button type="button" class="drop" id="drop" aria-describedby="drop-hint">
+        <span class="drop-empty" id="drop-empty">
+          <strong>Drop an image here</strong>
+          <span id="drop-hint">or paste one, or choose a file</span>
+        </span>
+        <img id="query-img" alt="The image you are searching with" hidden>
+      </button>
+      <input type="file" id="file" accept="image/*" class="sr" tabindex="-1">
+
+      <div class="controls">
+        <label class="range">
+          <span>Show <output id="k-out" for="k">24</output> matches</span>
+          <input type="range" id="k" min="6" max="60" step="6" value="24">
+        </label>
+        <label class="check"><input type="checkbox" id="flip"> Also match mirrored copies</label>
+        <label class="check"><input type="checkbox" id="exclude"> Hide the stored copy of this exact file</label>
+      </div>
+    </section>
+
+    <section class="results" aria-labelledby="r-title">
+      <div class="results-head">
+        <h2 id="r-title">Matches</h2>
+        <p id="status" role="status" aria-live="polite"></p>
+      </div>
+
+      <div id="empty" class="empty">
+        <p id="empty-text">Drop an image to find the same picture, or close edits of it, in your library.</p>
+        <div id="samples" class="samples" aria-label="Library images to start from"></div>
+      </div>
+
+      <ol id="grid" class="grid" hidden></ol>
+    </section>
+  </main>
+
+  <dialog id="detail" aria-labelledby="d-title">
+    <div class="d-head">
+      <h2 id="d-title">Compare</h2>
+      <button type="button" id="d-close" class="plain">Close</button>
+    </div>
+    <div class="compare">
+      <figure id="d-query-fig">
+        <img id="d-query" alt="Your image">
+        <figcaption>Your image</figcaption>
+      </figure>
+      <figure>
+        <img id="d-match" alt="">
+        <figcaption id="d-cap">Library match</figcaption>
+      </figure>
+    </div>
+    <div class="d-body">
+      <dl id="d-meta"></dl>
+      <div class="d-actions">
+        <button type="button" id="d-similar" class="primary">Find similar to this</button>
+        <a id="d-open" class="plain" target="_blank" rel="noopener noreferrer">Open full size</a>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="/app.js"></script>
+</body>
+</html>

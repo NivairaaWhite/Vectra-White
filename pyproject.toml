@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vectra"
+version = "2.0.0"
+description = "Local, trainable reverse image search. No cloud APIs, no pickles, one SQLite file."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = ["numpy>=1.21", "Pillow>=9.1"]
+
+[project.optional-dependencies]
+torch = ["torch>=2.0", "torchvision>=0.15"]   # ResNet backend + contrastive training
+faiss = ["faiss-cpu"]                          # HNSW / IVF indexes for big libraries
+all = ["torch>=2.0", "torchvision>=0.15", "faiss-cpu"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+vectra = "vectra.cli:main"
+
+[tool.setuptools]
+packages = ["vectra", "vectra.backends"]
+
+[tool.setuptools.package-data]
+vectra = ["web/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
